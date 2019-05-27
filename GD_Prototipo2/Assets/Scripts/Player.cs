@@ -5,8 +5,11 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     // Declare instace
-    [SerializeField] private float moveSpeed = 10.0f;
-    [SerializeField] private float height = 12.0f;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float height;
+    [SerializeField] private int nJumps;
+
+    private Animator anim;
 
     Rigidbody2D rb;
 
@@ -14,6 +17,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -43,13 +47,17 @@ public class Player : MonoBehaviour
         {
             Debug.Log("I'm trying to jump");
 
-            if (isOnGround)
+            if (isOnGround && nJumps >= 0)
             {
                 Debug.Log("I'm on ground - I can jump");
                 movement.y = height;
+                nJumps--;
             }
+
+            nJumps = 2;
         }
 
+        anim.SetFloat("Speed", Mathf.Abs(movement.x));
         rb.velocity = movement;
     }
 
