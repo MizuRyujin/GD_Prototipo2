@@ -58,6 +58,9 @@ public class CameraFollow : MonoBehaviour
             if (caPos.y > (bounds.yMax - y)) // Cmr's y is bigger than rect's y
                 caPos.y = bounds.yMax - y;
 
+            //caPos.x = Mathf.Clamp(caPos.x, bounds.xMin + x, bounds.xMax - x);
+            //caPos.y = Mathf.Clamp(caPos.y, bounds.xMin + y, bounds.xMax - y);
+
             // *we may use Clamp
         }
 
