@@ -2,17 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-abstract class Enemy : MonoBehaviour
+public class Enemy : Agent
 {
+    Collider2D shootRange;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    public void EnemyShoot()
+    {
+        //if (shootRange)
     }
 }
