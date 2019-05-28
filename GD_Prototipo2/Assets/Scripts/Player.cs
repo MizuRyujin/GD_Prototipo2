@@ -44,5 +44,5 @@ public class Player : Agent
      a lógica é, caso ele não detete colisão por baixo
      com o collider, ele salta caso tiver aJumps (air juumps) > 0
      */
-     
+
 }

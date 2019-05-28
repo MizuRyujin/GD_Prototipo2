@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Agent : MonoBehaviour
+public class Agent : MonoBehaviour
 {
     // Agents' variables
-    [SerializeField] private float height;
-    [SerializeField] private int nJumps;
-    [SerializeField] private int aJumps;
+    [SerializeField] protected float    height;
+    [SerializeField] protected int      nJumps;
+    [SerializeField] protected int      aJumps;
+    [SerializeField] protected float    moveSpeed = 100;
 
     public Animator     anim;
     public Rigidbody2D  rb;
     public Collider2D   colliderGround;
     public Collider2D   colliderAir;
 
-    // Properties
-    public float MoveSpeed { get; protected set; }
+    // Properties   
 
     // On ground checker
-    private bool isOnGround
+    protected bool isOnGround
     {
         get
         {
@@ -28,14 +28,15 @@ public abstract class Agent : MonoBehaviour
         }
     }
 
-    public virtual void Movement()
+    // Controls movement
+    protected void Movement()
     {
         // Variables
         float hAxis = Input.GetAxis("Horizontal");
         float rotate = hAxis * transform.right.x;
         Vector2 movement = rb.velocity;
 
-        movement = new Vector2(hAxis * MoveSpeed, movement.y);
+        movement = new Vector2(hAxis * moveSpeed, movement.y);
 
         if (rotate < 0.0f)
         {
@@ -65,6 +66,7 @@ public abstract class Agent : MonoBehaviour
         anim.SetFloat("Speed", Mathf.Abs(movement.x));
         rb.velocity = movement;
     }
+
 
 
     // Start is called before the first frame update
