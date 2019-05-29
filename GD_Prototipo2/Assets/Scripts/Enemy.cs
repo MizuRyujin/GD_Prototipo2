@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-abstract class Enemy : MonoBehaviour
+class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        Debug.Log("TRIGGERED");
+    }
+
+    void Start()
+    {        
     }
 
     // Update is called once per frame
