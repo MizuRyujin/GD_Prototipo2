@@ -4,45 +4,36 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Declare instace
-    // Variables
-    [SerializeField] private float  moveSpeed;
-    [SerializeField] private float  height;
-    [SerializeField] private int    nJumps;
-    [SerializeField] private int    aJumps;
-    private Animator                anim;
-    Rigidbody2D                     rb;
-    Collider2D                      colliderGround;
-    Collider2D                      colliderAir;
+    // Declare instance variables
+    [SerializeField] private float                      moveSpeed;
+    [SerializeField] private float                      height;
+    private BoxCollider2D                               airColl;
+    private CapsuleCollider2D                           groundColl;
+    private float                                       nJumps;
+    private Animator                                    anim;
+    private Rigidbody2D                                 rb;
 
-    // Properties
-    // On ground checker
+
+    // Properties (read-only)
+    // If character is on ground
     private bool isOnGround
     {
         get
         {
-            colliderGround = Physics2D.OverlapCircle(transform.position, 2.0f,
+            Collider2D Ground = Physics2D.OverlapCircle(transform.position, 2.0f,
             LayerMask.GetMask("Ground"));
-            return colliderGround != null;
+            return Ground != null;
         }
     }
 
-    // On air checker
-    private bool isOnAir
-    {
-        get
-        {
-            colliderAir = Physics2D.OverlapCircle(transform.position, 2.0f,
-            LayerMask.GetMask("Air"));
-            return colliderAir = null;
-        }
-    }
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        groundColl = GetComponent<CapsuleCollider2D>();
+        airColl = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -51,16 +42,19 @@ public class Player : MonoBehaviour
         Movement();
     }
 
+
     // Controls movement
     private void Movement()
     {
-        // Variables
-        float       hAxis = Input.GetAxis("Horizontal");
-        float       rotate = hAxis * transform.right.x;
-        Vector2     movement = rb.velocity;
+        // Block variables
+        float hAxis = Input.GetAxis("Horizontal");
+        Vector2 movement = rb.velocity;
 
+        // Actual movement
         movement = new Vector2(hAxis * moveSpeed, movement.y);
 
+        // Rotation
+        float rotate = hAxis * transform.right.x;
         if (rotate < 0.0f)
         {
             float rotAngle = 180.0f;
@@ -69,27 +63,44 @@ public class Player : MonoBehaviour
                 Quaternion.Euler(0.0f, rotAngle, 0.0f);
         }
 
-        // Case player press' space, jump
+        // In case player press space, jump
         if (Input.GetKeyDown("space"))
         {
             Debug.Log("I'm trying to jump");
 
-            //
-            while (isOnGround && nJumps >= 0 || isOnAir && aJumps >= 0)
+            //Check if player can double jump
+            if (nJumps > 0)
             {
-                Debug.Log("I'm on ground - I can jump");
+                Debug.Log($"I'm on air - I can jump, nJumps{nJumps}");
+                groundColl.enabled = false;
+                airColl.enabled = true;
                 movement.y = height;
                 nJumps--;
             }
 
-            nJumps = 1;
-            aJumps = 1;
+            //Check if player already used double jump
+            else if (nJumps == 0 && isOnGround)
+            {
+                Debug.Log($"I'm on ground && I can jump, nJumps{nJumps}");
+                movement.y = height;
+            }
+        }
+
+        // Reset number of allowed jumps
+        if(isOnGround)
+        {
+            nJumps = 2;
+            groundColl.enabled = true;
+            airColl.enabled = false;
         }
 
         anim.SetFloat("Speed", Mathf.Abs(movement.x));
         rb.velocity = movement;
     }
 
+
+
+    // Gizmos! //
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -101,5 +112,5 @@ public class Player : MonoBehaviour
      a lógica é, caso ele não detete colisão por baixo
      com o collider, ele salta caso tiver aJumps (air juumps) > 0
      */
-     
+
 }
