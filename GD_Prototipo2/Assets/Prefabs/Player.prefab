@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2043954749626131208}
   m_Layer: 0
   m_Name: ShootPoint
-  m_TagString: Untagged
+  m_TagString: ShootPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,7 +50,6 @@ MonoBehaviour:
   autoAim: 0
   targetTag: 
   bullet: {fileID: 2823423838603742836, guid: 859fd9cf1ded151469aa7bf0778447c1, type: 3}
-  range: {fileID: 0}
 --- !u!1 &5973821638306155912
 GameObject:
   m_ObjectHideFlags: 0
