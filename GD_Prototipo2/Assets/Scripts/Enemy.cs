@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     // Declare instance variables
     [SerializeField] private float moveSpeed;
-    [SerializeField] private GameObject bullet;
+
 
     private Rigidbody2D rb;
 
@@ -34,8 +34,7 @@ public class Enemy : MonoBehaviour
 
         if(collision.collider.tag == "Player")
         {
-            Player player = collision.gameObject.GetComponent<Player>();
-            player.transform.position = player.GetComponent<Transform>().position;
+            Destroy(collision.gameObject);
         }
     }
 }

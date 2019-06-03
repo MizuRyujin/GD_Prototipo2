@@ -1879,7 +1879,17 @@ PrefabInstance:
     - target: {fileID: 2542455138662073184, guid: 9921b8ced2dedc54586acc8cf08c45cb,
         type: 3}
       propertyPath: timedTrigger
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2542455138662073184, guid: 9921b8ced2dedc54586acc8cf08c45cb,
+        type: 3}
+      propertyPath: autoAim
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2542455138662073184, guid: 9921b8ced2dedc54586acc8cf08c45cb,
+        type: 3}
+      propertyPath: cooldownTime
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9921b8ced2dedc54586acc8cf08c45cb, type: 3}

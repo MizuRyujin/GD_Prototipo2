@@ -16,6 +16,10 @@ public class Player : MonoBehaviour
     private Animator                                    anim;
     private Rigidbody2D                                 rb;
     private int                                         timemode;
+    private float doubleSpeed;
+    private float normalSpeed;
+    private float normalHeight;
+    private float doubleHeight;
 
     // Properties (read-only)
     // If character is on ground
@@ -39,6 +43,10 @@ public class Player : MonoBehaviour
         airColl = GetComponent<BoxCollider2D>();
         transform.position = spawn.position;
         timemode = 0;
+        doubleSpeed = moveSpeed * 1.5f;
+        normalSpeed = moveSpeed;
+        normalHeight = height;
+        doubleHeight = height * 1.5f;
     }
 
     // Update is called once per frame
@@ -63,13 +71,14 @@ public class Player : MonoBehaviour
             if (timemode == 1)
             {
                 Time.timeScale = 0.3f;
-                moveSpeed *= 2;
+                moveSpeed = doubleSpeed;
+
             }
 
-            else
+            else if (timemode == 0)
             {
                 Time.timeScale = 1.0f;
-                moveSpeed /= 2;
+                moveSpeed = normalSpeed;
             }
         }
     }
@@ -108,6 +117,9 @@ public class Player : MonoBehaviour
                 airColl.enabled = true;
                 movement.y = height;
                 nJumps--;
+
+                if (timemode == 1)
+                    movement.y = doubleHeight;
             }
 
             //Check if player already used double jump
@@ -115,6 +127,9 @@ public class Player : MonoBehaviour
             {
                 Debug.Log($"I'm on ground && I can jump, nJumps{nJumps}");
                 movement.y = height;
+
+                if (timemode == 0)
+                    movement.y = normalHeight;
 
             }
         }
