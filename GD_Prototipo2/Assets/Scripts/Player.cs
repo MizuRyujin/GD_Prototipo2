@@ -7,9 +7,10 @@ public class Player : MonoBehaviour
     // Declare instance variables
     [SerializeField] private float                      moveSpeed;
     [SerializeField] private float                      height;
+    [SerializeField] private Transform spawn;
     private BoxCollider2D                               airColl;
     private CapsuleCollider2D                           groundColl;
-    private float                                       nJumps;
+    private float                                       nJumps = 2;
     private Animator                                    anim;
     private Rigidbody2D                                 rb;
 
@@ -34,6 +35,7 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         groundColl = GetComponent<CapsuleCollider2D>();
         airColl = GetComponent<BoxCollider2D>();
+        transform.position = spawn.position;
     }
 
     // Update is called once per frame
@@ -79,15 +81,16 @@ public class Player : MonoBehaviour
             }
 
             //Check if player already used double jump
-            else if (nJumps == 0 && isOnGround)
+            if (nJumps == 0 && isOnGround)
             {
                 Debug.Log($"I'm on ground && I can jump, nJumps{nJumps}");
                 movement.y = height;
+
             }
         }
 
         // Reset number of allowed jumps
-        if(isOnGround)
+        if (isOnGround)
         {
             nJumps = 2;
             groundColl.enabled = true;
