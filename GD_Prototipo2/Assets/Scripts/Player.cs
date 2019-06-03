@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float height;
     [SerializeField] private Transform spawn;
+    public int hp;
+
 
     // Declare class variables
     private BoxCollider2D airColl;
@@ -72,6 +74,9 @@ public class Player : MonoBehaviour
                 moveSpeed = doubleSpeed;
             }
         }
+
+        if (hp == 0)
+            Destroy(gameObject);
     }
 
 

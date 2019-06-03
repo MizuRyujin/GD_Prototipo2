@@ -35,9 +35,4 @@ public class MoveForward : MonoBehaviour
 
         transform.position = startPos + moveVector * speed * timer + hVector * s;
     }
-
-    void Update()
-    {
-
-    }
 }

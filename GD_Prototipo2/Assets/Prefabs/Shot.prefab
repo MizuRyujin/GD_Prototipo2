@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2823423838603742832}
   - component: {fileID: 4064163370728918134}
   - component: {fileID: 114440983961492803}
-  - component: {fileID: 2823423838603742833}
+  - component: {fileID: 8127938345506574407}
   - component: {fileID: 2823423838603742838}
   m_Layer: 0
   m_Name: Shot
@@ -108,8 +108,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 1.5
---- !u!70 &2823423838603742833
-CapsuleCollider2D:
+--- !u!58 &8127938345506574407
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -122,8 +122,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
-  m_Direction: 0
+  serializedVersion: 2
+  m_Radius: 8
 --- !u!50 &2823423838603742838
 Rigidbody2D:
   serializedVersion: 4

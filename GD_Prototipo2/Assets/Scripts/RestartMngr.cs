@@ -1,17 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class RestartLevel : MonoBehaviour
+public class RestartMngr : MonoBehaviour
 {
 
     private Scene Scene;
-
-    private bool isWhite;
-    public LayerMask WhatIsWhite;
-    public Transform GroundCheck;
-    public float CheckRadius;
     public GameObject LevelStart;
 
     private GameMngr gm;
@@ -26,11 +19,6 @@ public class RestartLevel : MonoBehaviour
         Scene = SceneManager.GetActiveScene();
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMngr>();
         transform.position = gm.LastCheckPointPos;
-    }
-
-    void FixedUpdate()
-    {
-        isWhite = Physics2D.OverlapCircle(GroundCheck.position, CheckRadius, WhatIsWhite);
     }
 
     void Update()

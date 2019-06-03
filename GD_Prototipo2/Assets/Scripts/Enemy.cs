@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     // Declare instance variables
     [SerializeField] private float moveSpeed;
+    public int hp;
 
 
     private Rigidbody2D rb;
@@ -24,6 +25,9 @@ public class Enemy : MonoBehaviour
         Vector3 movement = rb.velocity;
         movement.x = -transform.right.x * moveSpeed;
         rb.velocity = movement;
+
+        if (hp == 0)
+            Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

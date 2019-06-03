@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     // Declare instance variables
-    private float speed = 850.0f;
+    private float speed = 2000.0f;
 
     private Rigidbody2D rb;
 
@@ -19,5 +19,14 @@ public class Bullet : MonoBehaviour
     {
         rb.velocity = transform.right * speed;
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Enemy")
+        {
+            collision.gameObject.GetComponent<Enemy>().hp--;
+            Destroy(gameObject);
+        }
     }
 }

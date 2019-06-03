@@ -12,6 +12,8 @@ public class GameMngr : MonoBehaviour
         {
             instance = this;
         }
+
+        DontDestroyOnLoad(instance);
     }
 
 }
