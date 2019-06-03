@@ -8,12 +8,14 @@ public class Player : MonoBehaviour
     [SerializeField] private float                      moveSpeed;
     [SerializeField] private float                      height;
     [SerializeField] private Transform spawn;
+
+    // Declare class variables
     private BoxCollider2D                               airColl;
     private CapsuleCollider2D                           groundColl;
     private float                                       nJumps = 2;
     private Animator                                    anim;
     private Rigidbody2D                                 rb;
-
+    private int                                         timemode;
 
     // Properties (read-only)
     // If character is on ground
@@ -36,12 +38,40 @@ public class Player : MonoBehaviour
         groundColl = GetComponent<CapsuleCollider2D>();
         airColl = GetComponent<BoxCollider2D>();
         transform.position = spawn.position;
+        timemode = 0;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         Movement();
+
+        if(Input.GetButtonDown("Fire3"))
+        {
+            if(Time.timeScale == 0.0f)
+            {
+                timemode = 0;
+            }
+            else
+            {
+                timemode = 1;
+            }
+        }
+
+        if (timemode != 0)
+        {
+            if (timemode == 1)
+            {
+                Time.timeScale = 0.3f;
+                moveSpeed *= 2;
+            }
+
+            else
+            {
+                Time.timeScale = 1.0f;
+                moveSpeed /= 2;
+            }
+        }
     }
 
 

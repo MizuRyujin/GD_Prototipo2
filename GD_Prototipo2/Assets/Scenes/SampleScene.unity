@@ -1876,6 +1876,11 @@ PrefabInstance:
       propertyPath: range
       value: 
       objectReference: {fileID: 8984563514670030043}
+    - target: {fileID: 2542455138662073184, guid: 9921b8ced2dedc54586acc8cf08c45cb,
+        type: 3}
+      propertyPath: timedTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9921b8ced2dedc54586acc8cf08c45cb, type: 3}
 --- !u!1001 &5973821639553163907
@@ -1889,6 +1894,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5973821638306155912, guid: 8555ff879d0961741a400781ac62162c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5973821638306155923, guid: 8555ff879d0961741a400781ac62162c,
         type: 3}
@@ -1948,12 +1958,12 @@ PrefabInstance:
     - target: {fileID: 5973821638306155917, guid: 8555ff879d0961741a400781ac62162c,
         type: 3}
       propertyPath: moveSpeed
-      value: 0
+      value: 1100
       objectReference: {fileID: 0}
     - target: {fileID: 5973821638306155917, guid: 8555ff879d0961741a400781ac62162c,
         type: 3}
       propertyPath: height
-      value: 0
+      value: 1280
       objectReference: {fileID: 0}
     - target: {fileID: 5973821638306155917, guid: 8555ff879d0961741a400781ac62162c,
         type: 3}

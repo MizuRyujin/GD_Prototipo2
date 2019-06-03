@@ -32,5 +32,10 @@ public class Enemy : MonoBehaviour
             rb.velocity = transform.right * moveSpeed;
             transform.rotation = transform.rotation * Quaternion.Euler(0f, 180f, 0f);
 
+        if(collision.collider.tag == "Player")
+        {
+            Player player = collision.gameObject.GetComponent<Player>();
+            player.transform.position = player.GetComponent<Transform>().position;
+        }
     }
 }
