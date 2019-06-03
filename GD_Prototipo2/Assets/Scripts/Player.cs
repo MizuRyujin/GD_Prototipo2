@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     // Declare class variables
     private BoxCollider2D airColl;
     private CapsuleCollider2D groundColl;
-    private float nJumps = 2;
+    private float nJumps;
     private Animator anim;
     private Rigidbody2D rb;
     public int timeMode;
@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     {
         get
         {
-            Collider2D Ground = Physics2D.OverlapCircle(transform.position, 2.0f,
+            Collider2D Ground = Physics2D.OverlapCircle(transform.position, 15.0f,
             LayerMask.GetMask("Ground"));
             return Ground != null;
         }
@@ -47,34 +47,27 @@ public class Player : MonoBehaviour
         normalSpeed = moveSpeed;
         normalHeight = height;
         doubleHeight = height * 1.5f;
+        nJumps = 1;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        print(isOnGround);
         Movement();
 
         if (Input.GetButtonDown("Fire3"))
         {
-            //{
-            //    if (Time.timeScale == 0.0f)
-            //    {
-            //        timeMode = 0;
-            //    }
-            //    else if ()
-            //    {
-            //        timeMode = 1;
-            //    }
-            //}
-
             if (Time.timeScale != 1)
             {
                 Time.timeScale = 1f;
+                timeMode = 0;
                 moveSpeed = normalSpeed;
             }
 
             else
             {
+                timeMode = 1;
                 Time.timeScale = 0.3f;
                 moveSpeed = doubleSpeed;
             }
@@ -107,6 +100,18 @@ public class Player : MonoBehaviour
         {
             Debug.Log("I'm trying to jump");
 
+            //Check if player already used double jump
+            if (isOnGround)
+            {
+                Debug.Log($"I'm on ground && I can jump, nJumps{nJumps}");
+                movement.y = height;
+                nJumps = 1;
+
+                if (timeMode == 0)
+                    movement.y = normalHeight;
+
+            }
+
             //Check if player can double jump
             if (nJumps > 0)
             {
@@ -114,22 +119,13 @@ public class Player : MonoBehaviour
                 groundColl.enabled = false;
                 airColl.enabled = true;
                 movement.y = height;
-                nJumps--;
+                --nJumps;
 
                 if (timeMode == 1)
                     movement.y = doubleHeight;
             }
 
-            //Check if player already used double jump
-            if (nJumps == 0 && isOnGround)
-            {
-                Debug.Log($"I'm on ground && I can jump, nJumps{nJumps}");
-                movement.y = height;
 
-                if (timeMode == 0)
-                    movement.y = normalHeight;
-
-            }
         }
 
         // Reset number of allowed jumps
