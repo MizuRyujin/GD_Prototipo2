@@ -1,5 +1,72 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2462601633175928022
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4875537860880082742}
+  - component: {fileID: 2927848766116989088}
+  - component: {fileID: 5655696818386016732}
+  m_Layer: 10
+  m_Name: Gun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4875537860880082742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2462601633175928022}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3881472385980713240}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2927848766116989088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2462601633175928022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb47f6c98d4baa4db1583c0b4969cb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timedTrigger: 1
+  trigger: Fire1
+  triggerTime: 1
+  cooldownTime: 0.5
+  autoAim: 1
+  targetTag: Player
+  bullet: {fileID: 2823423838603742836, guid: 87740b0034551b545bf18bf0bec582b1, type: 3}
+--- !u!58 &5655696818386016732
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2462601633175928022}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 500
 --- !u!1 &3881472385980713246
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,11 +77,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3881472385980713240}
   - component: {fileID: 3881472385980713243}
-  - component: {fileID: 2542455138662073184}
   - component: {fileID: 3881472385980713247}
   - component: {fileID: 3881472385980713242}
   - component: {fileID: 3881472385980713241}
-  - component: {fileID: 8984563514670030043}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
@@ -32,7 +97,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1017, y: -219.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4875537860880082742}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -49,27 +115,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0
-  bullet: {fileID: 2823423838603742836, guid: 87740b0034551b545bf18bf0bec582b1, type: 3}
---- !u!114 &2542455138662073184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3881472385980713246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bb47f6c98d4baa4db1583c0b4969cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timedTrigger: 1
-  trigger: Fire1
-  triggerTime: 1
-  cooldownTime: 0.5
-  autoAim: 1
-  targetTag: Player
-  bullet: {fileID: 2823423838603742836, guid: 87740b0034551b545bf18bf0bec582b1, type: 3}
-  range: {fileID: 8984563514670030043}
 --- !u!212 &3881472385980713247
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -165,19 +210,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!58 &8984563514670030043
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3881472385980713246}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 604.55

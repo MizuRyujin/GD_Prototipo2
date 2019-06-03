@@ -11,7 +11,6 @@ public class WeaponController : MonoBehaviour
     public bool autoAim = false;
     public string targetTag = "";
     public GameObject bullet;
-    public CircleCollider2D range;
 
     float timer;
     float cooldown;
@@ -38,7 +37,6 @@ public class WeaponController : MonoBehaviour
                 }
             }
         }
-
         else
         {
             if (cooldown <= 0.0f)
@@ -49,13 +47,6 @@ public class WeaponController : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision == range)
-            if (collision.tag == "Player")
-                Fire();
     }
 
     void Fire()

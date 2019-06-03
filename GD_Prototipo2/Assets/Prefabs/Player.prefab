@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7637373876950885511}
+  - component: {fileID: 2043954749626131208}
   m_Layer: 0
-  m_Name: 
+  m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,12 +25,32 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1688501138104647605}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 138, z: 0}
+  m_LocalPosition: {x: 94, y: 111, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5973821638306155923}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2043954749626131208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688501138104647605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb47f6c98d4baa4db1583c0b4969cb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timedTrigger: 0
+  trigger: Fire1
+  triggerTime: 1
+  cooldownTime: 0.35
+  autoAim: 0
+  targetTag: 
+  bullet: {fileID: 2823423838603742836, guid: 859fd9cf1ded151469aa7bf0778447c1, type: 3}
+  range: {fileID: 0}
 --- !u!1 &5973821638306155912
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,7 +62,6 @@ GameObject:
   - component: {fileID: 5973821638306155923}
   - component: {fileID: 5973821638306155916}
   - component: {fileID: 5973821638306155917}
-  - component: {fileID: 975569366597963868}
   - component: {fileID: 5973821638306155918}
   - component: {fileID: 5973821638306155921}
   - component: {fileID: 5973821638306155919}
@@ -131,26 +151,7 @@ MonoBehaviour:
   moveSpeed: 1100
   height: 1350
   spawn: {fileID: 0}
---- !u!114 &975569366597963868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5973821638306155912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bb47f6c98d4baa4db1583c0b4969cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timedTrigger: 0
-  trigger: Fire1
-  triggerTime: 1
-  cooldownTime: 0.5
-  autoAim: 0
-  targetTag: 
-  bullet: {fileID: 2823423838603742836, guid: 859fd9cf1ded151469aa7bf0778447c1, type: 3}
-  range: {fileID: 0}
+  timeMode: 0
 --- !u!70 &5973821638306155918
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
