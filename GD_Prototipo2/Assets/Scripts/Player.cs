@@ -5,17 +5,17 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     // Declare instance variables
-    [SerializeField] private float                      moveSpeed;
-    [SerializeField] private float                      height;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float height;
     [SerializeField] private Transform spawn;
 
     // Declare class variables
-    private BoxCollider2D                               airColl;
-    private CapsuleCollider2D                           groundColl;
-    private float                                       nJumps = 2;
-    private Animator                                    anim;
-    private Rigidbody2D                                 rb;
-    private int                                         timemode;
+    private BoxCollider2D airColl;
+    private CapsuleCollider2D groundColl;
+    private float nJumps = 2;
+    private Animator anim;
+    private Rigidbody2D rb;
+    public int timeMode;
     private float doubleSpeed;
     private float normalSpeed;
     private float normalHeight;
@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
         groundColl = GetComponent<CapsuleCollider2D>();
         airColl = GetComponent<BoxCollider2D>();
         transform.position = spawn.position;
-        timemode = 0;
+        timeMode = 0;
         doubleSpeed = moveSpeed * 1.5f;
         normalSpeed = moveSpeed;
         normalHeight = height;
@@ -54,31 +54,29 @@ public class Player : MonoBehaviour
     {
         Movement();
 
-        if(Input.GetButtonDown("Fire3"))
+        if (Input.GetButtonDown("Fire3"))
         {
-            if(Time.timeScale == 0.0f)
-            {
-                timemode = 0;
-            }
-            else
-            {
-                timemode = 1;
-            }
-        }
+            //{
+            //    if (Time.timeScale == 0.0f)
+            //    {
+            //        timeMode = 0;
+            //    }
+            //    else if ()
+            //    {
+            //        timeMode = 1;
+            //    }
+            //}
 
-        if (timemode != 0)
-        {
-            if (timemode == 1)
+            if (Time.timeScale != 1)
+            {
+                Time.timeScale = 1f;
+                moveSpeed = normalSpeed;
+            }
+
+            else
             {
                 Time.timeScale = 0.3f;
                 moveSpeed = doubleSpeed;
-
-            }
-
-            else if (timemode == 0)
-            {
-                Time.timeScale = 1.0f;
-                moveSpeed = normalSpeed;
             }
         }
     }
@@ -118,7 +116,7 @@ public class Player : MonoBehaviour
                 movement.y = height;
                 nJumps--;
 
-                if (timemode == 1)
+                if (timeMode == 1)
                     movement.y = doubleHeight;
             }
 
@@ -128,7 +126,7 @@ public class Player : MonoBehaviour
                 Debug.Log($"I'm on ground && I can jump, nJumps{nJumps}");
                 movement.y = height;
 
-                if (timemode == 0)
+                if (timeMode == 0)
                     movement.y = normalHeight;
 
             }
@@ -162,3 +160,4 @@ public class Player : MonoBehaviour
      */
 
 }
+
