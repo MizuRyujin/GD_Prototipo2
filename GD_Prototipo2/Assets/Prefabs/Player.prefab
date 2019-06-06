@@ -150,6 +150,8 @@ MonoBehaviour:
   moveSpeed: 1100
   height: 1500
   spawn: {fileID: 0}
+  slomoTimer: 1.5
+  hp: 3
   timeMode: 0
 --- !u!70 &5973821638306155918
 CapsuleCollider2D:

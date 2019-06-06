@@ -9,9 +9,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float height;
     [SerializeField] private Transform spawn;
     public int hp;
+    public float lvlTimer;
 
 
     // Declare class variables
+    private float slomoTimer;
     private BoxCollider2D airColl;
     private CapsuleCollider2D groundColl;
     private float nJumps;
@@ -22,6 +24,9 @@ public class Player : MonoBehaviour
     private float normalSpeed;
     private float normalHeight;
     private float doubleHeight;
+    private bool slowDown;
+    private Camera cam;
+
 
     // Properties (read-only)
     // If character is on ground
@@ -37,7 +42,7 @@ public class Player : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -45,11 +50,56 @@ public class Player : MonoBehaviour
         airColl = GetComponent<BoxCollider2D>();
         transform.position = spawn.position;
         timeMode = 0;
-        doubleSpeed = moveSpeed * 1.5f;
+        doubleSpeed = moveSpeed * 1.65f;
         normalSpeed = moveSpeed;
         normalHeight = height;
         doubleHeight = height * 1.5f;
         nJumps = 1;
+        slomoTimer = 1.25f;
+        slowDown = false;
+        cam = Camera.main;
+        cam.backgroundColor = Color.black;
+    }
+
+    private void Update()
+    {
+        lvlTimer -= Time.deltaTime;
+
+        if (Input.GetButtonDown("Fire3"))
+        {
+            timeMode = 1;
+            Time.timeScale = 0.3f;
+            moveSpeed = doubleSpeed;
+            slowDown = true;
+            cam.backgroundColor = Color.cyan;
+        }
+
+        if(slowDown)
+        {
+            slomoTimer -= Time.deltaTime;
+        }
+
+        if(slomoTimer <= 0)
+        {
+            slowDown = false;
+        }
+
+        if (!slowDown)
+        {
+            Time.timeScale = 1f;
+            timeMode = 0;
+            moveSpeed = normalSpeed;
+            slomoTimer = 1.2f;
+            cam.backgroundColor = Color.black;
+        }
+
+        // Kill when out of level time
+        if(lvlTimer <= 0)
+            
+
+        // Kill when no lifes
+        if (hp == 0)
+            Destroy(gameObject);
     }
 
     // Update is called once per frame
@@ -57,26 +107,6 @@ public class Player : MonoBehaviour
     {
         print(isOnGround);
         Movement();
-
-        if (Input.GetButtonDown("Fire3"))
-        {
-            if (Time.timeScale != 1)
-            {
-                Time.timeScale = 1f;
-                timeMode = 0;
-                moveSpeed = normalSpeed;
-            }
-
-            else
-            {
-                timeMode = 1;
-                Time.timeScale = 0.3f;
-                moveSpeed = doubleSpeed;
-            }
-        }
-
-        if (hp == 0)
-            Destroy(gameObject);
     }
 
 

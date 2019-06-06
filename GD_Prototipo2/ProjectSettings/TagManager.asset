@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Bullet
   - ShootPoint
+  - GM
   layers:
   - Default
   - TransparentFX
