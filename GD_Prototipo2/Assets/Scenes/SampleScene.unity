@@ -1296,7 +1296,6 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420030}
   - component: {fileID: 519420029}
-  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1390,54 +1389,6 @@ Transform:
   m_Father: {fileID: 597778627}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &519420033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c785c7bfb4c88249af040b90333b816, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GamePaused: 0
-  PauseScreen: {fileID: 19385150}
---- !u!114 &578041938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 507353783}
-  m_Color: {r: 0.96120834, g: 0.3847122, b: 0.443808, a: 1}
-  m_Transform:
-    e00: 1
-    e01: 0
-    e02: 0
-    e03: 0
-    e10: 0
-    e11: 1
-    e12: 0
-    e13: 0
-    e20: 0
-    e21: 0
-    e22: 1
-    e23: 0
-    e30: 0
-    e31: 0
-    e32: 0
-    e33: 1
-  m_InstancedGameObject: {fileID: 0}
-  m_Flags: 3
-  m_ColliderType: 1
 --- !u!1 &597778626
 GameObject:
   m_ObjectHideFlags: 0
@@ -2937,25 +2888,33 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 2139653491}
     m_ColliderPaths:
-    - - X: -14135000064
-        Y: -5045000192
-      - X: -18175000576
-        Y: -5045000192
-      - X: -18175000576
-        Y: 12124999680
-      - X: -19185000448
-        Y: 12124999680
-      - X: -19185000448
-        Y: -6055000064
-      - X: -13125000192
-        Y: -6055000064
-      - X: -13125000192
-        Y: -5045000192
-      - X: 13134999552
-        Y: -5045000192
-      - X: 13134999552
+    - - X: -12115000320
         Y: -4035000064
-      - X: -14135000064
+      - X: -12115000320
+        Y: -5045000192
+      - X: -8074999808
+        Y: -5045000192
+      - X: -8074999808
+        Y: -6055000064
+      - X: 17175000064
+        Y: -6055000064
+      - X: 17175000064
+        Y: -5045000192
+      - X: 18185000960
+        Y: -5045000192
+      - X: -18175000576
+        Y: 12124999680
+      - X: -19185000448
+        Y: 12124999680
+      - X: -19185000448
+        Y: -6055000064
+      - X: -13125000192
+        Y: -6055000064
+      - X: -13125000192
+        Y: -5045000192
+      - X: 13134999552
+        Y: -5045000192
+      - X: 13134999552
         Y: -4035000064
   m_CompositePaths:
     m_Paths:
