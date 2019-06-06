@@ -40,7 +40,7 @@ public class WeaponController : MonoBehaviour
         {
             if (cooldown <= 0.0f)
             {
-                if (Input.GetButtonDown(trigger))
+                if (Input.GetButton(trigger))
                 {
                     Fire();
                 }

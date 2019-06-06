@@ -38,7 +38,18 @@ public class Enemy : MonoBehaviour
 
         if(collision.collider.tag == "Player")
         {
-            Destroy(collision.gameObject);
+            Player plr = collision.gameObject.GetComponent<Player>();
+            Vector3 knockback = collision.transform.position - transform.position;
+            float force = 1500.0f;
+
+            plr.hp--;
+
+            plr.gameObject.GetComponent<Rigidbody2D>().AddForce(
+                force * knockback.normalized);
+
+            print("I'm knocking back and taking hp");
+
+
         }
     }
 }
