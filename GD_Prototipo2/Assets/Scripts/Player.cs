@@ -90,12 +90,12 @@ public class Player : MonoBehaviour
             timeMode = 0;
             moveSpeed = normalSpeed;
             slomoTimer = 1.2f;
-            //cam.backgroundColor = Color.grey;
+            cam.backgroundColor = Color.black;
         }
 
         // Kill when out of level time
         if(lvlTimer <= 0)
-            Destroy(gameObject);
+            
 
         // Kill when no lifes
         if (hp == 0)

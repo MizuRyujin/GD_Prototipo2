@@ -14,14 +14,19 @@ public class StartGame : MonoBehaviour
     {
         StartScene();
         Quit();
+        Restart();
     }
 
     public void StartScene()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
         }
+
     }
 
     public void Quit()
@@ -29,6 +34,15 @@ public class StartGame : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Application.Quit();
+        }
+    }
+
+    public void Restart()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+
         }
     }
 }
