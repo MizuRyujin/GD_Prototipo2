@@ -8,8 +8,7 @@ public class ClearOnTouch : MonoBehaviour
     {
         if (collision.tag == "Wall" 
             || collision.tag == "Ground" 
-            || collision.tag == "Ceilling" 
-            || collision.tag == "Enemy" 
+            || collision.tag == "Ceilling"  
             || collision.tag == "Player")
             Destroy(gameObject);
     }

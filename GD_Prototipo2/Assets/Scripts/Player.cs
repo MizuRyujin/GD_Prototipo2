@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     private float doubleHeight;
     private bool slowDown;
     private Camera cam;
+    Vector2 movement;
 
 
 
@@ -61,12 +62,18 @@ public class Player : MonoBehaviour
         cam = Camera.main;
         cam.backgroundColor = Color.black;
 
+
     }
 
+    // Called once per frame
     private void Update()
     {
         lvlTimer -= Time.deltaTime;
 
+        print(isOnGround);
+        Movement();
+
+        // SlowDown Time
         if (Input.GetButtonDown("Fire3"))
         {
             timeMode = 1;
@@ -100,13 +107,6 @@ public class Player : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        print(isOnGround);
-        Movement();
 
         // Kill when no lifes
         if (hp == 0)
@@ -119,7 +119,20 @@ public class Player : MonoBehaviour
     {
         // Block variables
         float hAxis = Input.GetAxis("Horizontal");
-        Vector2 movement = rb.velocity;
+        movement = rb.velocity;
+
+        // Actual movement
+        movement = new Vector2(hAxis * moveSpeed, movement.y);
+
+        // Rotation
+        float rotate = hAxis * transform.right.x;
+        if (rotate < 0.0f)
+        {
+            float rotAngle = 180.0f;
+
+            transform.rotation = transform.rotation *
+                Quaternion.Euler(0.0f, rotAngle, 0.0f);
+        }
 
         // In case player press space, jump
         if (Input.GetKeyDown("space"))
@@ -157,19 +170,6 @@ public class Player : MonoBehaviour
             nJumps = 1;
             groundColl.enabled = true;
             airColl.enabled = false;
-        }
-
-        // Actual movement
-        movement = new Vector2(hAxis * moveSpeed, movement.y);
-
-        // Rotation
-        float rotate = hAxis * transform.right.x;
-        if (rotate < 0.0f)
-        {
-            float rotAngle = 180.0f;
-
-            transform.rotation = transform.rotation *
-                Quaternion.Euler(0.0f, rotAngle, 0.0f);
         }
 
         anim.SetFloat("Speed", Mathf.Abs(movement.x));
