@@ -6,13 +6,11 @@ public class ClearOnTouch : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Enemy")
-        {
-            collision.gameObject.GetComponent<Enemy>().hp--;
-            Destroy(gameObject);
-        }
-
-        if (collision.tag == "Wall" || collision.tag == "Ground" || collision.tag == "Ceilling")
+        if (collision.tag == "Wall" 
+            || collision.tag == "Ground" 
+            || collision.tag == "Ceilling" 
+            || collision.tag == "Enemy" 
+            || collision.tag == "Player")
             Destroy(gameObject);
     }
 }

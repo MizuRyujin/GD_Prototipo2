@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     private Camera cam;
 
 
+
     // Properties (read-only)
     // If character is on ground
     private bool isOnGround
@@ -59,6 +60,7 @@ public class Player : MonoBehaviour
         slowDown = false;
         cam = Camera.main;
         cam.backgroundColor = Color.black;
+
     }
 
     private void Update()
@@ -98,9 +100,6 @@ public class Player : MonoBehaviour
         {
             Destroy(gameObject);
         }
-            
-
-
     }
 
     // Update is called once per frame
@@ -121,19 +120,6 @@ public class Player : MonoBehaviour
         // Block variables
         float hAxis = Input.GetAxis("Horizontal");
         Vector2 movement = rb.velocity;
-
-        // Actual movement
-        movement = new Vector2(hAxis * moveSpeed, movement.y);
-
-        // Rotation
-        float rotate = hAxis * transform.right.x;
-        if (rotate < 0.0f)
-        {
-            float rotAngle = 180.0f;
-
-            transform.rotation = transform.rotation *
-                Quaternion.Euler(0.0f, rotAngle, 0.0f);
-        }
 
         // In case player press space, jump
         if (Input.GetKeyDown("space"))
@@ -163,8 +149,6 @@ public class Player : MonoBehaviour
                 if (timeMode == 1)
                     movement.y = doubleHeight;
             }
-
-
         }
 
         // Reset number of allowed jumps
@@ -173,6 +157,19 @@ public class Player : MonoBehaviour
             nJumps = 1;
             groundColl.enabled = true;
             airColl.enabled = false;
+        }
+
+        // Actual movement
+        movement = new Vector2(hAxis * moveSpeed, movement.y);
+
+        // Rotation
+        float rotate = hAxis * transform.right.x;
+        if (rotate < 0.0f)
+        {
+            float rotAngle = 180.0f;
+
+            transform.rotation = transform.rotation *
+                Quaternion.Euler(0.0f, rotAngle, 0.0f);
         }
 
         anim.SetFloat("Speed", Mathf.Abs(movement.x));
