@@ -95,11 +95,12 @@ public class Player : MonoBehaviour
 
         // Kill when out of level time
         if(lvlTimer <= 0)
+        {
+            Destroy(gameObject);
+        }
             
 
-        // Kill when no lifes
-        if (hp == 0)
-            Destroy(gameObject);
+
     }
 
     // Update is called once per frame
@@ -107,6 +108,10 @@ public class Player : MonoBehaviour
     {
         print(isOnGround);
         Movement();
+
+        // Kill when no lifes
+        if (hp == 0)
+            Destroy(gameObject);
     }
 
 
@@ -140,7 +145,6 @@ public class Player : MonoBehaviour
             {
                 Debug.Log($"I'm on ground && I can jump, nJumps{nJumps}");
                 movement.y = height;
-                nJumps = 1;
 
                 if (timeMode == 0)
                     movement.y = normalHeight;
@@ -166,7 +170,7 @@ public class Player : MonoBehaviour
         // Reset number of allowed jumps
         if (isOnGround)
         {
-            nJumps = 2;
+            nJumps = 1;
             groundColl.enabled = true;
             airColl.enabled = false;
         }

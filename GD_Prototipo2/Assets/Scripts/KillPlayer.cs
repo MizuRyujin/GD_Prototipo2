@@ -11,5 +11,6 @@ public class KillPlayer : MonoBehaviour
             collision.gameObject.GetComponent<Player>().hp--;
             Destroy(gameObject);
         }
+        print("I hit player");
     }
 }
